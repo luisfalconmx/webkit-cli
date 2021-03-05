@@ -1,0 +1,60 @@
+name-template: "v$RESOLVED_VERSION"
+tag-template: "v$RESOLVED_VERSION"
+categories:
+  - title: "Features"
+    labels:
+      - "feat"
+
+  - title: "Bug Fixes"
+    labels:
+      - "fix"
+
+  - title: "Maintenance"
+    label: "chore"
+
+  - title: "Documentation"
+    label: "docs"
+
+  - title: "Continuos Integration"
+    label: "ci"
+
+  - title: "Build"
+    label: "build"
+
+  - title: "Performance"
+    label: "perf"
+
+  - title: "Refactor"
+    label: "refactor"
+
+  - title: "Style"
+    label: "style"
+
+  - title: "Test"
+    label: "test"
+
+change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
+change-title-escapes: '\<*_&'
+
+version-resolver:
+  major:
+    labels:
+      - "major"
+  minor:
+    labels:
+      - "minor"
+  patch:
+    labels:
+      - "patch"
+  default: patch
+
+template: |
+  ## Getting the project
+  Get package from NPM: #
+  Get package from Github Package Registry: #
+  License: https://github.com/luisfalconmx/webkit-cli/blob/main/LICENSE
+  Code of Conduct: https://github.com/luisfalconmx/webkit-cli/blob/main/CODE_OF_CONDUCT.md
+
+  ## New in webkit-cli v$RESOLVED_VERSION
+
+  $CHANGES
