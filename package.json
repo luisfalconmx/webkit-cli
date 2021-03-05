@@ -1,0 +1,24 @@
+{
+  "name": "webkit-cli",
+  "version": "1.0.0",
+  "description": "CLI tool for initialize new frontend projects with different frameworks and web technologies",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "webkit": "./bin/global.js"
+  },
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luisfalconmx/webkit-cli.git"
+  },
+  "keywords": [],
+  "author": "luisfalconmx",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luisfalconmx/webkit-cli/issues"
+  },
+  "homepage": "https://github.com/luisfalconmx/webkit-cli#readme"
+}
