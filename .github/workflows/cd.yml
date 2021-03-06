@@ -1,0 +1,9 @@
+name: Continuos Delivery
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  # release
+  # publish
