@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/luisfalconmx/webkit-cli/issues"
   },
-  "homepage": "https://github.com/luisfalconmx/webkit-cli#readme"
+  "homepage": "https://github.com/luisfalconmx/webkit-cli#readme",
+  "dependencies": {
+    "inquirer": "^8.0.0"
+  }
 }
