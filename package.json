@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "webkit": "./bin/global.js"
+    "webkit": "./bin/cli.js"
   },
   "preferGlobal": true,
   "repository": {
