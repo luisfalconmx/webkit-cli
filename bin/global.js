@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-let say = require("../src/index.js");
+let cli = require("../src/index.js");
 
-say.hello();
+cli.prompt();
