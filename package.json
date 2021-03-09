@@ -23,6 +23,8 @@
   "homepage": "https://github.com/luisfalconmx/webkit-cli#readme",
   "dependencies": {
     "commander": "^7.1.0",
-    "inquirer": "^8.0.0"
+    "fs-extra": "^9.1.0",
+    "inquirer": "^8.0.0",
+    "recursive-copy": "^2.0.11"
   }
 }
