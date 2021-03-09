@@ -2,7 +2,7 @@
   "name": "webkit-cli",
   "version": "1.0.0",
   "description": "CLI tool for initialize new frontend projects with different frameworks and web technologies",
-  "main": "index.js",
+  "main": "bin/cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

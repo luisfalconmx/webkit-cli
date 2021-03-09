@@ -1,8 +1,12 @@
 #!/usr/bin/env node
+const package = require("../package.json");
 const prompt = require("../src/utils/prompt.js");
 const command = require("../src/utils/command.js");
 
-command.register("new", "create a new project", function () {
+// Set the cli version
+command.version(package.version);
+
+command.create("new", "create a new project", function () {
   const questions = prompt.setQuestions([
     {
       name: "project",
@@ -35,4 +39,5 @@ command.register("new", "create a new project", function () {
   });
 });
 
+// Active all commands (This is required)
 command.activate();
