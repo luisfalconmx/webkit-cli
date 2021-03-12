@@ -1,6 +1,6 @@
 const copy = require("recursive-copy");
 const options = {
-  overwrite: false,
+  overwrite: true,
   dot: true,
 };
 

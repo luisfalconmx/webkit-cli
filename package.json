@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/luisfalconmx/webkit-cli#readme",
   "dependencies": {
+    "colors": "^1.4.0",
     "commander": "^7.1.0",
     "fs-extra": "^9.1.0",
     "inquirer": "^8.0.0",

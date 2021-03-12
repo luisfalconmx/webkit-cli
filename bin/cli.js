@@ -4,6 +4,7 @@ const package = require("../package.json");
 const prompt = require("../src/utils/prompt.js");
 const command = require("../src/utils/command.js");
 const template = require("../src/utils/template.js");
+const colors = require("colors/safe");
 
 // Set the cli version
 command.version(package.version);
@@ -19,34 +20,70 @@ command.create("new", "create a new project", () => {
       name: "framework",
       type: "list",
       message: "What css framework will you use?",
-      choices: ["tailwindcss", "bootstrap", "none"],
+      choices: ["tailwindcss", "bootstrap"],
     },
     {
-      name: "stack",
+      name: "license",
       type: "list",
-      message: "que stack prefieres utilizar",
-      choices: ["html-css-js", "pug-postcss-js", "pug-sass-js"],
-      when: (answers) => answers.framework === "none",
+      message: "What license will you use for your project?",
+      default: "MIT",
+      choices: ["MIT", "ISC"],
+    },
+    {
+      name: "useActions",
+      type: "confirm",
+      message: "Will you use github actions for your project?",
+      default: true,
+    },
+    {
+      name: "actions",
+      type: "checkbox",
+      message: "Select which actions you want to use",
+      choices: [
+        {
+          name: "CodeQL",
+          checked: true,
+        },
+        {
+          name: "Build",
+          checked: false,
+        },
+        {
+          name: "Test",
+          checked: false,
+        },
+        {
+          name: "Deploy",
+          checked: false,
+        },
+      ],
+      when: (answers) => answers.useActions === true,
     },
   ]);
 
   prompt
     .getAnswers(questions)
     .then((answers) => {
-      let choise;
-
-      if (answers.framework === "tailwindcss") choise = answers.framework;
-      if (answers.framework === "bootstrap") choise = answers.framework;
-      if (answers.stack === "html-css-js") choise = answers.stack;
-      if (answers.stack === "pug-postcss-js") choise = answers.stack;
-      if (answers.stack === "pug-sass-js") choise = answers.stack;
-
       template.generate(
-        path.resolve(__dirname, `../src/templates/${choise}`),
+        path.resolve(__dirname, `../src/templates/${answers.framework}`),
         answers.project
       );
+
+      console.log("");
+      console.log(colors.green("Your project was created successfully!"));
+      console.log("Now run the following commands to finish the installation:");
+      console.log("");
+      console.log(colors.magenta("cd " + answers.project));
+      console.log(colors.magenta("git init"));
+      console.log(colors.magenta("npm install"));
     })
-    .catch((error) => console.error(error));
+    .catch((error) => {
+      console.log("");
+      console.log(
+        colors.red("Something went wrong when creating your project :(")
+      );
+      console.error(error);
+    });
 });
 
 // Active all commands (This is required)
