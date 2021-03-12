@@ -1,3 +1,5 @@
-const message = "hello";
+async function hello() {
+  console.log("hello");
+}
 
-console.log(message);
+hello();
