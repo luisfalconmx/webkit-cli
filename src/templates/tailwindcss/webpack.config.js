@@ -12,7 +12,12 @@ module.exports = {
     assetModuleFilename: "assets/images/[hash][ext]",
   },
   resolve: {
-    extensions: [".js"],
+    extensions: [".js", ".pug"],
+    alias: {
+      "@styles": path.resolve(__dirname, "src/styles/"),
+      "@images": path.resolve(__dirname, "src/assets/images/"),
+      "@fonts": path.resolve(__dirname, "src/assets/fonts/"),
+    },
   },
   module: {
     rules: [
@@ -60,7 +65,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "styles/[name].[contenthash].css",
+      filename: "[name].[contenthash].css",
     }),
     new HtmlWebpackPlugin({
       template: "./src/pages/home.pug",
