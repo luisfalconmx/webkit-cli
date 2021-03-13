@@ -28,6 +28,7 @@ module.exports = {
     historyApiFallback: true,
     port: 2303,
   },
+  devtool: "source-map",
   module: {
     rules: [
       {
