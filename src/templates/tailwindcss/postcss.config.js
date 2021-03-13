@@ -1,8 +1,8 @@
-const postcssPresetEnv = require("postcss-preset-env");
-const postcssEasyImport = require("postcss-easy-import");
-const postcssSimpleVars = require("postcss-simple-vars");
-const autoprefixer = require("autoprefixer");
-const tailwindcss = require("tailwindcss");
+const postcssPresetEnv = require('postcss-preset-env')
+const postcssEasyImport = require('postcss-easy-import')
+const postcssSimpleVars = require('postcss-simple-vars')
+const autoprefixer = require('autoprefixer')
+const tailwindcss = require('tailwindcss')
 
 module.exports = {
   plugins: [
@@ -10,6 +10,6 @@ module.exports = {
     autoprefixer(),
     postcssPresetEnv({ stage: 0 }),
     postcssSimpleVars(),
-    tailwindcss(),
-  ],
-};
+    tailwindcss()
+  ]
+}

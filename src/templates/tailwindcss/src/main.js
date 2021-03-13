@@ -1,7 +1,7 @@
-import "./styles/main.pcss";
+import './styles/main.pcss'
 
 async function hello() {
-  console.log("hello");
+  console.log('hello')
 }
 
-hello();
+hello()

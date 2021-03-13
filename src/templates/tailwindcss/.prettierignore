@@ -1,0 +1,6 @@
+# Ignore specific folders
+dist/
+
+# Ignore specific files
+
+# Ignore glob patterns

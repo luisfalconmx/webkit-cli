@@ -1,0 +1,12 @@
+# Ignore specific folders
+.vscode/
+dist/
+
+# Ignore specific files
+postcss.config.js
+tailwind.config.js
+webpack.config.dev.js
+webpack.config.js
+
+# Ignore glob patterns
+*.pug

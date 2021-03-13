@@ -1,15 +1,15 @@
 module.exports = {
   purge: [],
-  darkMode: "media",
+  darkMode: 'media',
   theme: {
     extend: {
       fontFamily: {
-        body: ["Open Sans"],
-      },
-    },
+        body: ['Open Sans']
+      }
+    }
   },
   variants: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
-};
+  plugins: []
+}
