@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   entry: "./src/main.js",
@@ -71,6 +72,7 @@ module.exports = {
       template: "./src/pages/home.pug",
       inject: true,
     }),
+    new Dotenv(),
   ],
   optimization: {
     minimize: true,
