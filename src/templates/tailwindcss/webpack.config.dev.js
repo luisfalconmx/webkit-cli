@@ -20,6 +20,12 @@ module.exports = {
       "@fonts": path.resolve(__dirname, "src/assets/fonts/"),
     },
   },
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    historyApiFallback: true,
+    port: 2303,
+  },
   module: {
     rules: [
       {
