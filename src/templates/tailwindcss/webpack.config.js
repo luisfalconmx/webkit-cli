@@ -1,12 +1,14 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerWebpackPlugin = require("css-minimizer-webpack-plugin");
+const TerserWebpackPlugin = require("terser-webpack-plugin");
 
 module.exports = {
   entry: "./src/main.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "index.js",
+    filename: "[name].[contenthash].js",
     assetModuleFilename: "assets/images/[hash][ext]",
   },
   resolve: {
@@ -51,18 +53,22 @@ module.exports = {
         test: /\.(woff|woff2)$/,
         type: "asset/resource",
         generator: {
-          filename: "assets/fonts/[name][ext]",
+          filename: "assets/fonts/[name].[contenthash].[ext]",
         },
       },
     ],
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "index.css",
+      filename: "styles/[name].[contenthash].css",
     }),
     new HtmlWebpackPlugin({
       template: "./src/pages/home.pug",
       inject: true,
     }),
   ],
+  optimization: {
+    minimize: true,
+    minimizer: [new CssMinimizerWebpackPlugin(), new TerserWebpackPlugin()],
+  },
 };
