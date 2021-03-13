@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.js",
@@ -18,6 +19,21 @@ module.exports = {
           loader: "babel-loader",
         },
       },
+      {
+        test: /\.pug$/,
+        use: {
+          loader: "pug3-loader",
+          options: {
+            pretty: true,
+          },
+        },
+      },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/pages/home.pug",
+      inject: true,
+    }),
+  ],
 };
