@@ -3,10 +3,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/main.js",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "index.js",
+    assetModuleFilename: "images/[hash][ext]",
   },
   resolve: {
     extensions: [".js"],
@@ -41,6 +42,10 @@ module.exports = {
           },
           "postcss-loader",
         ],
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
       },
     ],
   },
