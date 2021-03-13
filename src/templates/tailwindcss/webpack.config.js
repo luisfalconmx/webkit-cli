@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "index.js",
-    assetModuleFilename: "images/[hash][ext]",
+    assetModuleFilename: "assets/images/[hash][ext]",
   },
   resolve: {
     extensions: [".js"],
@@ -46,6 +46,13 @@ module.exports = {
       {
         test: /\.(png|jpg|jpeg|gif)$/i,
         type: "asset/resource",
+      },
+      {
+        test: /\.(woff|woff2)$/,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/fonts/[name][ext]",
+        },
       },
     ],
   },

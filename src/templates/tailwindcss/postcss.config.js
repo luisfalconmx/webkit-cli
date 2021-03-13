@@ -6,8 +6,8 @@ const tailwindcss = require("tailwindcss");
 
 module.exports = {
   plugins: [
-    autoprefixer(),
     postcssEasyImport(),
+    autoprefixer(),
     postcssPresetEnv({ stage: 0 }),
     postcssSimpleVars(),
     tailwindcss(),

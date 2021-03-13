@@ -2,7 +2,11 @@ module.exports = {
   purge: [],
   darkMode: "media",
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        body: ["Open Sans"],
+      },
+    },
   },
   variants: {
     extend: {},
