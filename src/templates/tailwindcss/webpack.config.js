@@ -6,7 +6,7 @@ module.exports = {
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "main.js",
+    filename: "index.js",
   },
   resolve: {
     extensions: [".js"],
@@ -45,7 +45,9 @@ module.exports = {
     ],
   },
   plugins: [
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "index.css",
+    }),
     new HtmlWebpackPlugin({
       template: "./src/pages/home.pug",
       inject: true,
