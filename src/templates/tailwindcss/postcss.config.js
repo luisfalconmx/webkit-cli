@@ -5,11 +5,5 @@ const autoprefixer = require('autoprefixer')
 const tailwindcss = require('tailwindcss')
 
 module.exports = {
-  plugins: [
-    postcssEasyImport(),
-    autoprefixer(),
-    postcssPresetEnv({ stage: 0 }),
-    postcssSimpleVars(),
-    tailwindcss()
-  ]
+  plugins: [postcssEasyImport(), autoprefixer(), postcssPresetEnv({ stage: 0 }), postcssSimpleVars(), tailwindcss()]
 }
