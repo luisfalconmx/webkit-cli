@@ -17,7 +17,7 @@ config.output = {
 }
 
 config.resolve = {
-  extensions: ['.js', '.pug'],
+  extensions: ['.js'],
   alias: {
     '@styles': path.resolve(__dirname, 'src/styles/'),
     '@images': path.resolve(__dirname, 'src/assets/images/'),
@@ -32,15 +32,6 @@ config.module = {
       exclude: /node_modules/,
       use: {
         loader: 'babel-loader'
-      }
-    },
-    {
-      test: /\.pug$/,
-      use: {
-        loader: 'pug3-loader',
-        options: {
-          pretty: true
-        }
       }
     },
     {
