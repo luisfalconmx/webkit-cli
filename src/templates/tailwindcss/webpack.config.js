@@ -44,7 +44,7 @@ config.module = {
       }
     },
     {
-      test: /\.pcss$/i,
+      test: /\.(css|pcss|sss)$/i,
       use: [
         MiniCssExtractPlugin.loader,
         {
@@ -75,14 +75,11 @@ module.exports = (env, argv) => {
     config.mode = 'development'
 
     config.devServer = {
-      open: true,
+      port: 2303,
       contentBase: path.join(__dirname, 'dist'),
       compress: true,
-      historyApiFallback: true,
-      port: 2303
+      historyApiFallback: true
     }
-
-    config.devtool = 'source-map'
 
     config.plugins = [
       new Dotenv(),
@@ -104,6 +101,11 @@ module.exports = (env, argv) => {
   if (argv.mode === 'production') {
     config.mode = 'production'
 
+    config.optimization = {
+      minimize: true,
+      minimizer: [new TerserWebpackPlugin()]
+    }
+
     config.plugins = [
       new Dotenv(),
       new CleanWebpackPlugin(),
@@ -115,12 +117,6 @@ module.exports = (env, argv) => {
         inject: true
       })
     ]
-
-    config.optimization = {
-      minimize: true,
-      // minimizer: [new CssMinimizerWebpackPlugin(), new TerserWebpackPlugin()]
-      minimizer: [new TerserWebpackPlugin()]
-    }
   }
 
   return config
