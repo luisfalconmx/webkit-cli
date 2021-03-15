@@ -12,7 +12,7 @@ config.entry = './src/index.js'
 
 config.output = {
   path: path.resolve(__dirname, 'dist'),
-  filename: 'bundle.[contenthash].js',
+  filename: '[name].[contenthash].js',
   assetModuleFilename: 'assets/images/[hash][ext]'
 }
 
@@ -41,19 +41,6 @@ config.module = {
       }
     },
     {
-      test: /\.(css|pcss|sss)$/i,
-      use: [
-        MiniCssExtractPlugin.loader,
-        {
-          loader: 'css-loader',
-          options: {
-            importLoaders: 1
-          }
-        },
-        'postcss-loader'
-      ]
-    },
-    {
       test: /\.(png|jpg|jpeg|gif)$/i,
       type: 'asset/resource'
     },
@@ -77,6 +64,20 @@ module.exports = (env, argv) => {
       compress: true,
       historyApiFallback: true
     }
+
+    config.module.rules.push({
+      test: /\.(css|pcss|sss)$/,
+      use: [
+        'style-loader',
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1
+          }
+        },
+        'postcss-loader'
+      ]
+    })
 
     config.plugins = [
       new HtmlWebpackPlugin({
@@ -104,16 +105,31 @@ module.exports = (env, argv) => {
       minimizer: [new TerserWebpackPlugin()]
     }
 
+    config.module.rules.push({
+      test: /\.(css|pcss|sss)$/,
+      use: [
+        MiniCssExtractPlugin.loader,
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1
+          }
+        },
+        'postcss-loader'
+      ]
+    })
+
     config.plugins = [
-      new Dotenv(),
-      new CleanWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        template: './public/index.html',
+        filename: 'index.html',
+        inject: true
+      }),
       new MiniCssExtractPlugin({
         filename: '[name].[contenthash].css'
       }),
-      new HtmlWebpackPlugin({
-        template: './src/pages/home.pug',
-        inject: true
-      })
+      new CleanWebpackPlugin(),
+      new Dotenv()
     ]
   }
 

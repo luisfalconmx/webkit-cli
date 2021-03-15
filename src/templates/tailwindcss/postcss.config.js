@@ -13,7 +13,7 @@ module.exports = ({ env }) => ({
     postcssPresetEnv({ stage: 0 }),
     postcssSimpleVars(),
     tailwindcss(),
-    env === 'production' ? purgecss({ content: ['./**/*.pug'] }) : false,
+    env === 'production' ? purgecss({ content: ['./**/*.html', './**/*.jsx'] }) : false,
     env === 'production'
       ? cssnano({ preset: ['default', { discardComments: { removeAll: true } }] })
       : false
