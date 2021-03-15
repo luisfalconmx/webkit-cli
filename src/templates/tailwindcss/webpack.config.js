@@ -8,7 +8,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 const config = {}
 
-config.entry = './src/main.js'
+config.entry = './src/index.js'
 
 config.output = {
   path: path.resolve(__dirname, 'dist'),

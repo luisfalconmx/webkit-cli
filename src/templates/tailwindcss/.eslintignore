@@ -9,4 +9,4 @@ webpack.config.dev.js
 webpack.config.js
 
 # Ignore glob patterns
-*.pug
+*
