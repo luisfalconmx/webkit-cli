@@ -35,6 +35,12 @@ config.module = {
       }
     },
     {
+      test: /\.html$/,
+      use: {
+        loader: 'html-loader'
+      }
+    },
+    {
       test: /\.(css|pcss|sss)$/i,
       use: [
         MiniCssExtractPlugin.loader,
@@ -73,18 +79,19 @@ module.exports = (env, argv) => {
     }
 
     config.plugins = [
-      new Dotenv(),
-      new CleanWebpackPlugin(),
-      new BundleAnalyzerPlugin({
-        openAnalyzer: false,
-        analyzerMode: 'json'
+      new HtmlWebpackPlugin({
+        template: './public/index.html',
+        filename: 'index.html',
+        inject: true
       }),
       new MiniCssExtractPlugin({
         filename: '[name].[contenthash].css'
       }),
-      new HtmlWebpackPlugin({
-        template: './src/pages/home.pug',
-        inject: true
+      new CleanWebpackPlugin(),
+      new Dotenv(),
+      new BundleAnalyzerPlugin({
+        openAnalyzer: false,
+        analyzerMode: 'json'
       })
     ]
   }
