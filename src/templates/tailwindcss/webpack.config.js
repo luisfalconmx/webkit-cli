@@ -12,12 +12,12 @@ config.entry = './src/index.js'
 
 config.output = {
   path: path.resolve(__dirname, 'dist'),
-  filename: '[name].[contenthash].js',
+  filename: 'bundle.[contenthash].js',
   assetModuleFilename: 'assets/images/[hash][ext]'
 }
 
 config.resolve = {
-  extensions: ['.js'],
+  extensions: ['.js', '.jsx'],
   alias: {
     '@styles': path.resolve(__dirname, 'src/styles/'),
     '@images': path.resolve(__dirname, 'src/assets/images/'),
@@ -28,7 +28,7 @@ config.resolve = {
 config.module = {
   rules: [
     {
-      test: /\.m?js$/,
+      test: /\.(js|jsx)$/,
       exclude: /node_modules/,
       use: {
         loader: 'babel-loader'
