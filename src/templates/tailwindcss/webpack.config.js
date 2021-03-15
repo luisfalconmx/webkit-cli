@@ -41,10 +41,6 @@ config.module = {
       }
     },
     {
-      test: /\.(png|jpg|jpeg|gif)$/i,
-      type: 'asset/resource'
-    },
-    {
       test: /\.(woff|woff2)$/,
       type: 'asset/resource',
       generator: {
@@ -76,6 +72,20 @@ module.exports = (env, argv) => {
           }
         },
         'postcss-loader'
+      ]
+    })
+
+    config.module.rules.push({
+      test: /\.(jpe?g|png|webp)$/i,
+      use: [
+        {
+          loader: 'responsive-loader',
+          options: {
+            adapter: require('responsive-loader/sharp'),
+            disable: true
+          }
+        },
+        'webp-loader'
       ]
     })
 
@@ -116,6 +126,19 @@ module.exports = (env, argv) => {
           }
         },
         'postcss-loader'
+      ]
+    })
+
+    config.module.rules.push({
+      test: /\.(jpe?g|png|webp)$/i,
+      use: [
+        {
+          loader: 'responsive-loader',
+          options: {
+            adapter: require('responsive-loader/sharp')
+          }
+        },
+        'webp-loader'
       ]
     })
 
