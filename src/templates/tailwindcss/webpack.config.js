@@ -95,7 +95,8 @@ module.exports = (env, argv) => {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: 'index.html',
-      inject: true
+      inject: true,
+      favicon: './src/assets/icons/favicon.svg'
     }),
 
     new MiniCssExtractPlugin({
