@@ -15,7 +15,7 @@ module.exports = (env, argv) => {
 
   config.output = {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'javascript/[name].[contenthash].js',
+    filename: '[name].[contenthash].js',
     assetModuleFilename: 'assets/images/[hash][ext]'
   }
 
@@ -36,6 +36,8 @@ module.exports = (env, argv) => {
         compress: true,
         historyApiFallback: true
       }
+
+  config.devtool = isProduction ? 'source-map' : false
 
   config.module = {
     rules: [
@@ -66,7 +68,7 @@ module.exports = (env, argv) => {
         ]
       },
       {
-        test: /\.(jpe?g|png|webp)$/i,
+        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
         use: [
           {
             loader: 'responsive-loader',
@@ -80,7 +82,7 @@ module.exports = (env, argv) => {
         ]
       },
       {
-        test: /\.(woff|woff2)$/,
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
         type: 'asset/resource',
         generator: {
           filename: 'assets/fonts/[name].[contenthash].[ext]'
@@ -97,7 +99,7 @@ module.exports = (env, argv) => {
     }),
 
     new MiniCssExtractPlugin({
-      filename: 'styles/[name].[contenthash].css'
+      filename: '[name].[contenthash].css'
     }),
 
     new CleanWebpackPlugin(),
