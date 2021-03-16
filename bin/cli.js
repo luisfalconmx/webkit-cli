@@ -20,7 +20,7 @@ command.create("new", "create a new project", () => {
       name: "framework",
       type: "list",
       message: "What css framework will you use?",
-      choices: ["tailwindcss", "bootstrap"],
+      choices: ["tailwindcss"],
     },
     {
       name: "license",
@@ -29,53 +29,28 @@ command.create("new", "create a new project", () => {
       default: "MIT",
       choices: ["MIT", "ISC"],
     },
-    {
-      name: "useActions",
-      type: "confirm",
-      message: "Will you use github actions for your project?",
-      default: true,
-    },
-    {
-      name: "actions",
-      type: "checkbox",
-      message: "Select which actions you want to use",
-      choices: [
-        {
-          name: "CodeQL",
-          checked: true,
-        },
-        {
-          name: "Build",
-          checked: false,
-        },
-        {
-          name: "Test",
-          checked: false,
-        },
-        {
-          name: "Deploy",
-          checked: false,
-        },
-      ],
-      when: (answers) => answers.useActions === true,
-    },
   ]);
 
   prompt
     .getAnswers(questions)
     .then((answers) => {
+      const message = () => {
+        console.log("");
+        console.log(colors.green("Your project was created successfully!"));
+        console.log(
+          "Now run the following commands to finish the installation:"
+        );
+        console.log("");
+        console.log(colors.magenta("cd " + answers.project));
+        console.log(colors.magenta("npm install"));
+        console.log(colors.magenta("npm start"));
+      };
+
       template.generate(
         path.resolve(__dirname, `../src/templates/${answers.framework}`),
-        answers.project
+        answers.project,
+        message
       );
-
-      console.log("");
-      console.log(colors.green("Your project was created successfully!"));
-      console.log("Now run the following commands to finish the installation:");
-      console.log("");
-      console.log(colors.magenta("cd " + answers.project));
-      console.log(colors.magenta("git init"));
-      console.log(colors.magenta("npm install"));
     })
     .catch((error) => {
       console.log("");
