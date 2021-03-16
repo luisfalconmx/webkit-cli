@@ -1,13 +1,13 @@
 {
   "name": "webkit-cli",
   "version": "1.0.0",
-  "description": "CLI tool for initialize new frontend projects with different frameworks and web technologies",
-  "main": "index.js",
+  "description": "CLI tool for initialize react projects with different frameworks and web technologies",
+  "main": "bin/cli.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "webkit": "./bin/global.js"
+    "webkit": "./bin/cli.js"
   },
   "preferGlobal": true,
   "repository": {
@@ -20,5 +20,12 @@
   "bugs": {
     "url": "https://github.com/luisfalconmx/webkit-cli/issues"
   },
-  "homepage": "https://github.com/luisfalconmx/webkit-cli#readme"
+  "homepage": "https://github.com/luisfalconmx/webkit-cli#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "commander": "^7.1.0",
+    "fs-extra": "^9.1.0",
+    "inquirer": "^8.0.0",
+    "recursive-copy": "^2.0.11"
+  }
 }
