@@ -10,7 +10,12 @@ module.exports = ({ env }) => ({
   plugins: [
     postcssEasyImport(),
     autoprefixer(),
-    postcssPresetEnv({ stage: 0 }),
+    postcssPresetEnv({
+      stage: 3,
+      features: {
+        'nesting-rules': true
+      }
+    }),
     postcssSimpleVars(),
     tailwindcss(),
     env === 'production' ? purgecss({ content: ['./**/*.html', './**/*.jsx'] }) : false,

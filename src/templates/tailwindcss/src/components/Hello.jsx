@@ -1,15 +1,15 @@
 import React from 'react'
-
-import Logo from '@images/github-logo.png'
+import '@styles/components/Hello.pcss'
+import Logo from '@images/logo.png'
 
 const Hello = () => (
-  <div>
-    <h1>Hello World</h1>
-    <picture>
-      <source type="image/webp" />
-      <source type="image/jpeg" srcSet={Logo} />
-      <img src={Logo} alt="" />
-    </picture>
+  <div className="Hello">
+    <img className="Hello__logo" src={Logo} alt="" />
+    <h1 className="Hello__title">Webkit CLI</h1>
+    <p className="Hello__subtitle">React + Tailwindcss + Postcss + Webpack</p>
+    <a className="Hello__link" href="https://github.com/luisfalconmx">
+      by luisfalconmx
+    </a>
   </div>
 )
 
