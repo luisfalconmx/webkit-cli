@@ -28,6 +28,8 @@ module.exports = (env, argv) => {
     }
   }
 
+  config.target = isProduction ? 'browserslist' : 'web'
+
   config.devServer = isProduction
     ? {}
     : {
@@ -57,8 +59,7 @@ module.exports = (env, argv) => {
       {
         test: /\.(css|pcss|sss)$/i,
         use: [
-          // isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
-          MiniCssExtractPlugin.loader,
+          isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
           {
             loader: 'css-loader',
             options: {
