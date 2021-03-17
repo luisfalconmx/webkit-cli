@@ -8,6 +8,7 @@ categories:
   - title: "Bug Fixes"
     labels:
       - "fix"
+      - "bug"
 
   - title: "Maintenance"
     label: "chore"
