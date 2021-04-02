@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/main.js",
   "scripts": {
-    "start": "webpack serve --mode development",
+    "start": "webpack serve --mode development --stats",
     "dev": "webpack --mode development",
     "build": "webpack --mode production",
     "lint": "eslint {src/**/*.js,src/**/*.jsx}",
@@ -56,7 +56,8 @@
     "webpack": "^5.24.4",
     "webpack-bundle-analyzer": "^4.4.0",
     "webpack-cli": "^4.5.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "webpackbar": "^5.0.0-3"
   },
   "dependencies": {
     "react": "^17.0.1",
