@@ -6,9 +6,10 @@ const Dotenv = require('dotenv-webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const WebpackBar = require('webpackbar')
-const dotenv = require('dotenv').config({ path: __dirname + '/.env' })
 
 const config = {}
+const host = process.env.HOST
+const port = process.env.PORT
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production'
@@ -35,8 +36,8 @@ module.exports = (env, argv) => {
   config.devServer = isProduction
     ? {}
     : {
-        host: dotenv.parsed.HOST,
-        port: dotenv.parsed.PORT,
+        host: host,
+        port: port,
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
         historyApiFallback: true
