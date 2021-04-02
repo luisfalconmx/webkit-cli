@@ -1,1 +1,1 @@
-# webkit-cli: tailwindcss
+# componetizer-cli + tailwindcss
