@@ -7,20 +7,20 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "webkit": "./bin/cli.js"
+    "componetizer": "./bin/cli.js"
   },
   "preferGlobal": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/luisfalconmx/webkit-cli.git"
+    "url": "git+https://github.com/componetizer/componetizer-cli.git"
   },
   "keywords": [],
   "author": "luisfalconmx",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/luisfalconmx/webkit-cli/issues"
+    "url": "https://github.com/componetizer/componetizer-cli/issues"
   },
-  "homepage": "https://github.com/luisfalconmx/webkit-cli#readme",
+  "homepage": "https://github.com/componetizer/componetizer-cli#readme",
   "dependencies": {
     "colors": "^1.4.0",
     "commander": "^7.1.0",

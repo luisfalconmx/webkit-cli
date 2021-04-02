@@ -14,20 +14,13 @@ command.create("new", "create a new project", () => {
     {
       name: "project",
       message: "What is the name of your project?",
-      default: "webkit",
+      default: "my-project",
     },
     {
       name: "framework",
       type: "list",
       message: "What css framework will you use?",
       choices: ["tailwindcss"],
-    },
-    {
-      name: "license",
-      type: "list",
-      message: "What license will you use for your project?",
-      default: "MIT",
-      choices: ["MIT", "ISC"],
     },
   ]);
 
