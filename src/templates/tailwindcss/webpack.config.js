@@ -5,6 +5,8 @@ const TerserWebpackPlugin = require('terser-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const WebpackBar = require('webpackbar')
+const dotenv = require('dotenv').config({ path: __dirname + '/.env' })
 
 const config = {}
 
@@ -33,7 +35,8 @@ module.exports = (env, argv) => {
   config.devServer = isProduction
     ? {}
     : {
-        port: 2303,
+        host: dotenv.parsed.HOST,
+        port: dotenv.parsed.PORT,
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
         historyApiFallback: true
@@ -108,6 +111,8 @@ module.exports = (env, argv) => {
     new CleanWebpackPlugin(),
 
     new Dotenv(),
+
+    new WebpackBar(),
 
     new BundleAnalyzerPlugin({
       analyzerMode: isProduction ? 'disabled' : 'json'
