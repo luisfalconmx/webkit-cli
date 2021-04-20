@@ -1,14 +1,12 @@
 module.exports = {
-  darkMode: 'media',
+  mode: 'jit',
+  purge: [],
+  darkMode: 'media', // or 'media' or 'class'
   theme: {
-    extend: {
-      fontFamily: {
-        body: ['Open Sans']
-      }
-    }
+    extend: {},
   },
   variants: {
-    extend: {}
+    extend: {},
   },
-  plugins: []
+  plugins: [],
 }

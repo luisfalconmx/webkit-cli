@@ -1,1 +1,1 @@
-# webkit-cli: bootstrap
+# componetizer-cli + bootstrap
