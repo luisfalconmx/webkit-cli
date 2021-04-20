@@ -6,8 +6,7 @@
   "scripts": {
     "start": "webpack serve --mode development --stats",
     "dev": "webpack serve --mode development",
-    "build": "webpack --mode production",
-    "prepare": "husky install"
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "luisfalconmx",
@@ -25,9 +24,11 @@
     "@babel/plugin-transform-runtime": "^7.13.15",
     "@babel/preset-env": "^7.13.15",
     "@babel/preset-react": "^7.13.13",
+    "autoprefixer": "^10.2.5",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "*",
     "css-loader": "^5.2.4",
+    "cssnano": "^5.0.1",
     "dotenv-webpack": "^7.0.2",
     "eslint": "^7.24.0",
     "eslint-config-prettier": "^8.2.0",
@@ -41,7 +42,11 @@
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
     "mini-css-extract-plugin": "^1.5.0",
+    "postcss": "^8.2.10",
+    "postcss-easy-import": "^3.0.0",
     "postcss-loader": "^5.2.0",
+    "postcss-preset-env": "^6.7.0",
+    "postcss-simple-vars": "^6.0.3",
     "prettier": "^2.2.1",
     "responsive-loader": "^2.3.0",
     "style-loader": "^2.0.0",
