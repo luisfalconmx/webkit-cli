@@ -1,5 +1,5 @@
 {
-  "name": "tailwindcss",
+  "name": "componetizer-cli-tailwindcss",
   "version": "1.0.0",
   "description": "",
   "main": "src/main.js",
@@ -49,7 +49,7 @@
     "responsive-loader": "^2.3.0",
     "sharp": "^0.27.2",
     "style-loader": "^2.0.0",
-    "tailwindcss": "^2.0.3",
+    "tailwindcss": "^2.1.1",
     "terser-webpack-plugin": "^5.1.1",
     "url-loader": "^4.1.1",
     "webp-loader": "^0.6.0",
