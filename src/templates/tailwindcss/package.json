@@ -8,6 +8,10 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "*",
+    "css-loader": "^5.2.4",
+    "dotenv-webpack": "^7.0.2",
     "eslint": "^7.24.0",
     "eslint-config-prettier": "^8.2.0",
     "eslint-config-standard": "^16.0.2",
@@ -15,11 +19,25 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.3.1",
     "eslint-plugin-react": "^7.23.2",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.5.0",
+    "postcss-loader": "^5.2.0",
     "prettier": "^2.2.1",
-    "tailwindcss": "^2.1.1"
+    "responsive-loader": "^2.3.0",
+    "style-loader": "^2.0.0",
+    "tailwindcss": "^2.1.1",
+    "terser-webpack-plugin": "^5.1.1",
+    "webpack": "^5.34.0",
+    "webpack-bundle-analyzer": "^4.4.1",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpackbar": "^5.0.0-3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack serve --mode development --stats",
+    "dev": "webpack serve --mode development",
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "luisfalconmx",

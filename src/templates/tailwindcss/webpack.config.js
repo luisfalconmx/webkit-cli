@@ -75,20 +75,6 @@ module.exports = (env, argv) => {
         ]
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
-        use: [
-          {
-            loader: 'responsive-loader',
-            options: {
-              adapter: require('responsive-loader/sharp'),
-              disable: isProduction ? false : true,
-              outputPath: 'assets/images'
-            }
-          },
-          'webp-loader'
-        ]
-      },
-      {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         type: 'asset/resource',
         generator: {
