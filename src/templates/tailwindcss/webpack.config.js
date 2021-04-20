@@ -75,6 +75,13 @@ module.exports = (env, argv) => {
         ]
       },
       {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/images/[name].[contenthash].[ext]'
+        }
+      },
+      {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
         type: 'asset/resource',
         generator: {
