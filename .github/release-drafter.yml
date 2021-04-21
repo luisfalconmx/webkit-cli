@@ -1,52 +1,52 @@
-name-template: "v$RESOLVED_VERSION"
-tag-template: "v$RESOLVED_VERSION"
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
 categories:
-  - title: "Features"
+  - title: 'Features'
     labels:
-      - "feat"
+      - 'feat'
 
-  - title: "Bug Fixes"
+  - title: 'Bug Fixes'
     labels:
-      - "fix"
-      - "bug"
+      - 'fix'
+      - 'bug'
 
-  - title: "Maintenance"
-    label: "chore"
+  - title: 'Maintenance'
+    label: 'chore'
 
-  - title: "Documentation"
-    label: "docs"
+  - title: 'Documentation'
+    label: 'docs'
 
-  - title: "Continuos Integration"
-    label: "ci"
+  - title: 'Continuos Integration'
+    label: 'ci'
 
-  - title: "Build"
-    label: "build"
+  - title: 'Build'
+    label: 'build'
 
-  - title: "Performance"
-    label: "perf"
+  - title: 'Performance'
+    label: 'perf'
 
-  - title: "Refactor"
-    label: "refactor"
+  - title: 'Refactor'
+    label: 'refactor'
 
-  - title: "Style"
-    label: "style"
+  - title: 'Style'
+    label: 'style'
 
-  - title: "Test"
-    label: "test"
+  - title: 'Test'
+    label: 'test'
 
-change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
+change-template: '- $TITLE @$AUTHOR (#$NUMBER)'
 change-title-escapes: '\<*_&'
 
 version-resolver:
   major:
     labels:
-      - "major"
+      - 'major'
   minor:
     labels:
-      - "minor"
+      - 'minor'
   patch:
     labels:
-      - "patch"
+      - 'patch'
   default: patch
 
 template: |
