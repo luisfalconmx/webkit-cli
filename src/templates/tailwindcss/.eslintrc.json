@@ -1,12 +1,10 @@
 {
-  "settings": {
-    "import/resolver": "webpack"
-  },
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "node": true
   },
-  "extends": ["plugin:react/recommended", "airbnb", "plugin:prettier/recommended"],
+  "extends": ["plugin:react/recommended", "standard", "prettier"],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -14,14 +12,11 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "parser": "babel-eslint",
-  "plugins": ["react", "jsx-a11y", "import"],
-  "rules": {
-    "react/jsx-filename-extension": [
-      1,
-      {
-        "extensions": [".js", ".jsx"]
-      }
-    ]
-  }
+  "plugins": ["react"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {}
 }

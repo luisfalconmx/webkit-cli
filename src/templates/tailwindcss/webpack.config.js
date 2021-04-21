@@ -4,7 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin
 const WebpackBar = require('webpackbar')
 
 const config = {}
@@ -74,18 +75,11 @@ module.exports = (env, argv) => {
         ]
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
-        use: [
-          {
-            loader: 'responsive-loader',
-            options: {
-              adapter: require('responsive-loader/sharp'),
-              disable: isProduction ? false : true,
-              outputPath: 'assets/images'
-            }
-          },
-          'webp-loader'
-        ]
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/images/[name].[contenthash].[ext]'
+        }
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,
