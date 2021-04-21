@@ -1,9 +1,9 @@
 ---
 name: Documentation Request
 about: Mention what improvements the documentation needs
-title: ""
-labels: "docs"
-assignees: "luisfalconmx"
+title: ''
+labels: 'docs'
+assignees: 'luisfalconmx'
 ---
 
 **Describe the Documentation Request**
