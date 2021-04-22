@@ -4,13 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 const Dotenv = require('dotenv-webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
-  .BundleAnalyzerPlugin
 const WebpackBar = require('webpackbar')
 
 const config = {}
-const host = process.env.HOST
-const port = process.env.PORT
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production'
@@ -19,32 +15,29 @@ module.exports = (env, argv) => {
 
   config.output = {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[contenthash].js',
-    assetModuleFilename: 'assets/images/[hash][ext]'
+    filename: '[name].[contenthash].js'
   }
 
   config.resolve = {
     extensions: ['.js', '.jsx'],
     alias: {
-      '@styles': path.resolve(__dirname, 'src/styles/'),
       '@images': path.resolve(__dirname, 'src/assets/images/'),
-      '@fonts': path.resolve(__dirname, 'src/assets/fonts/')
+      '@icons': path.resolve(__dirname, 'src/assets/icons/'),
+      '@fonts': path.resolve(__dirname, 'src/assets/fonts/'),
+      '@components': path.resolve(__dirname, 'src/components/'),
+      '@containers': path.resolve(__dirname, 'src/containers/'),
+      '@styles': path.resolve(__dirname, 'src/styles/')
     }
   }
-
-  config.target = isProduction ? 'browserslist' : 'web'
 
   config.devServer = isProduction
     ? {}
     : {
-        host: host,
-        port: port,
+        host: '0.0.0.0',
+        port: 3000,
         contentBase: path.join(__dirname, 'dist'),
-        compress: true,
-        historyApiFallback: true
+        compress: true
       }
-
-  config.devtool = isProduction ? 'source-map' : false
 
   config.module = {
     rules: [
@@ -73,20 +66,6 @@ module.exports = (env, argv) => {
           },
           'postcss-loader'
         ]
-      },
-      {
-        test: /\.(png|jpg|jpeg|gif|svg)$/,
-        type: 'asset/resource',
-        generator: {
-          filename: 'assets/images/[name].[contenthash].[ext]'
-        }
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/,
-        type: 'asset/resource',
-        generator: {
-          filename: 'assets/fonts/[name].[contenthash].[ext]'
-        }
       }
     ]
   }
@@ -95,8 +74,8 @@ module.exports = (env, argv) => {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: 'index.html',
-      inject: true,
-      favicon: './src/assets/icons/favicon.svg'
+      inject: true
+      // favicon: './src/assets/icons/favicon.svg'
     }),
 
     new MiniCssExtractPlugin({
@@ -107,17 +86,13 @@ module.exports = (env, argv) => {
 
     new Dotenv(),
 
-    new WebpackBar(),
-
-    new BundleAnalyzerPlugin({
-      analyzerMode: isProduction ? 'disabled' : 'json'
-    })
+    new WebpackBar()
   ]
 
-  config.optimization = {
-    minimize: isProduction ? true : false,
-    minimizer: isProduction ? [new TerserWebpackPlugin()] : []
-  }
+  // config.optimization = {
+  //   minimize: isProduction ? true : false,
+  //   minimizer: isProduction ? [new TerserWebpackPlugin()] : []
+  // }
 
   return config
 }
