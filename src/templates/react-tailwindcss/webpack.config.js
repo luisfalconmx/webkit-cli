@@ -16,7 +16,7 @@ module.exports = (env, argv) => {
   const Production = argv.mode === 'production'
 
   // Get enviroment variables from .env file
-  const { HOST, PORT } = process.env
+  const { HOST } = process.env
 
   config.entry = './src/index.js'
 
@@ -41,7 +41,7 @@ module.exports = (env, argv) => {
   if (Development) {
     config.devServer = {
       host: HOST,
-      port: PORT,
+      port: 3000,
       contentBase: path.join(__dirname, 'dist'),
       compress: true
     }

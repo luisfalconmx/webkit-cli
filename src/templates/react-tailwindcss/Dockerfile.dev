@@ -1,4 +1,4 @@
-# Dockerfile optimize for production
+# Dockerfile optimize for development
 FROM node:14.16.1-alpine
 COPY . /home/node/app
 WORKDIR /home/node/app
