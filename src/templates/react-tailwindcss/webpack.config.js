@@ -29,7 +29,6 @@ module.exports = (env, argv) => {
     extensions: ['.js', '.jsx'],
     alias: {
       '@images': path.resolve(__dirname, 'src/assets/images/'),
-      '@icons': path.resolve(__dirname, 'src/assets/icons/'),
       '@fonts': path.resolve(__dirname, 'src/assets/fonts/'),
       '@components': path.resolve(__dirname, 'src/components/'),
       '@containers': path.resolve(__dirname, 'src/containers/'),
@@ -82,8 +81,8 @@ module.exports = (env, argv) => {
     new HtmlWebpackPlugin({
       template: './public/index.html',
       filename: 'index.html',
+      favicon: './public/favicon.svg',
       inject: true
-      // favicon: './src/assets/icons/favicon.svg'
     }),
 
     new MiniCssExtractPlugin({

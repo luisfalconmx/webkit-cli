@@ -1,6 +1,12 @@
 import React from 'react'
-import Title from '../components/Title'
+import Title from '@components/Title'
+import Logo from '@images/tailwindcss.png'
 
-const App = () => <Title text="Hello World" />
+const App = () => (
+  <>
+    <Logo />
+    <Title text="Hello World" />
+  </>
+)
 
 export default App
