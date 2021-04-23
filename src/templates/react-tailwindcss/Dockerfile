@@ -1,6 +1,7 @@
+# Production
 FROM node:14.16.1-alpine
-COPY . /usr/share/
-WORKDIR /usr/share/
+COPY . /app
+WORKDIR /app
 RUN npm install
 EXPOSE 3000
 CMD [ "npm", "start" ]

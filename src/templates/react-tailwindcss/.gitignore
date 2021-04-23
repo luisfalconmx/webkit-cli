@@ -1,2 +1,6 @@
+# Common Folders
 node_modules/
 dist/
+
+# Common files
+.env

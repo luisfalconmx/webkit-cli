@@ -1,15 +1,22 @@
+// Require dependencies
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
-const Dotenv = require('dotenv-webpack')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const WebpackBar = require('webpackbar')
+const Dotenv = require('dotenv-webpack')
+require('dotenv').config()
 
 const config = {}
 
 module.exports = (env, argv) => {
-  const isProduction = argv.mode === 'production'
+  // Detect webpack mode
+  const Development = argv.mode === 'development'
+  const Production = argv.mode === 'production'
+
+  // Get enviroment variables from .env file
+  const { HOST, PORT } = process.env
 
   config.entry = './src/index.js'
 
@@ -30,14 +37,15 @@ module.exports = (env, argv) => {
     }
   }
 
-  config.devServer = isProduction
-    ? {}
-    : {
-        host: '0.0.0.0',
-        port: 3000,
-        contentBase: path.join(__dirname, 'dist'),
-        compress: true
-      }
+  // Enable webpack dev server in development mode
+  if (Development) {
+    config.devServer = {
+      host: HOST,
+      port: PORT,
+      contentBase: path.join(__dirname, 'dist'),
+      compress: true
+    }
+  }
 
   config.module = {
     rules: [
@@ -57,7 +65,7 @@ module.exports = (env, argv) => {
       {
         test: /\.(css|pcss|sss)$/i,
         use: [
-          isProduction ? MiniCssExtractPlugin.loader : 'style-loader',
+          Production ? MiniCssExtractPlugin.loader : 'style-loader',
           {
             loader: 'css-loader',
             options: {
@@ -89,10 +97,13 @@ module.exports = (env, argv) => {
     new WebpackBar()
   ]
 
-  // config.optimization = {
-  //   minimize: isProduction ? true : false,
-  //   minimizer: isProduction ? [new TerserWebpackPlugin()] : []
-  // }
+  // Enable optimizations in production mode
+  if (Production) {
+    config.optimization = {
+      minimize: true,
+      minimizer: [new TerserWebpackPlugin()]
+    }
+  }
 
   return config
 }
