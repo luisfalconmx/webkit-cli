@@ -4,8 +4,8 @@ import Logo from '@images/tailwindcss.png'
 
 const App = () => (
   <>
-    <Logo />
     <Title text="Hello World" />
+    <img src={Logo} />
   </>
 )
 
