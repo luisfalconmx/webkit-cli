@@ -28,6 +28,7 @@
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0-alpha.0",
     "css-loader": "^5.2.4",
+    "cssnano": "^5.0.1",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^7.0.2",
     "eslint": "^7.24.0",
