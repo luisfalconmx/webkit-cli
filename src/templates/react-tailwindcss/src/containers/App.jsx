@@ -1,11 +1,14 @@
 import React from 'react'
-import Title from '@components/Title'
+import Hero from '@components/Hero'
 import Logo from '@images/tailwindcss.png'
 
 const App = () => (
   <>
-    <Title text="Hello World" />
-    <img src={Logo} />
+    <Hero
+      title="React + Tailwindcss"
+      image={Logo}
+      imageAlt="Tailwindcss Logo"
+    />
   </>
 )
 
