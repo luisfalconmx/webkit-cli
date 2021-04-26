@@ -37,6 +37,12 @@ module.exports = (env, argv) => {
     }
   }
 
+  // Compatibility for browserslist
+  config.target = Production ? 'browserslist' : 'web'
+
+  // Enable sourcemaps for production and development
+  config.devtool = Production ? 'source-map' : 'eval'
+
   // Enable webpack dev server in development mode
   if (Development) {
     config.devServer = {

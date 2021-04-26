@@ -6,7 +6,12 @@ const config = {}
 module.exports = ({ env }) => {
   const Production = env === 'production'
 
-  config.plugins = [tailwindcss(), autoprefixer(), Production && cssnano()]
+  config.plugins = [
+    tailwindcss(),
+    autoprefixer(),
+    Production &&
+      cssnano({ preset: ['default', { discardComments: { removeAll: true } }] })
+  ]
 
   return config
 }
