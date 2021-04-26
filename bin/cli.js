@@ -1,58 +1,43 @@
 #!/usr/bin/env node
 const path = require('path')
 const { version } = require('../package.json')
-const prompt = require('../src/utils/prompt.js')
-const command = require('../src/utils/command.js')
-const template = require('../src/utils/template.js')
+const { program } = require('commander')
+const inquirer = require('inquirer')
 const colors = require('colors/safe')
+const copy = require('recursive-copy')
 
 // Set the cli version
-command.version(version)
+program.version(version)
 
-command.create('new', 'create a new project', () => {
-  const questions = prompt.setQuestions([
-    {
-      name: 'project',
-      message: 'What is the name of your project?',
-      default: 'my-project'
-    },
-    {
-      name: 'framework',
-      type: 'list',
-      message: 'What css framework will you use?',
-      choices: ['tailwindcss']
-    }
-  ])
-
-  prompt
-    .getAnswers(questions)
-    .then((answers) => {
-      const message = () => {
-        console.log('')
-        console.log(colors.green('Your project was created successfully!'))
-        console.log(
-          'Now run the following commands to finish the installation:'
+program
+  .command('new')
+  .description('create a new project')
+  .action(() => {
+    inquirer
+      .prompt([
+        {
+          name: 'project',
+          message: 'What is the name of your project?',
+          default: 'my-project'
+        },
+        {
+          name: 'template',
+          type: 'list',
+          message: 'Select the template you will use',
+          choices: ['react-tailwindcss', 'react-bootstrap']
+        }
+      ])
+      .then(async ({ project, template }) => {
+        await copy(
+          path.resolve(__dirname, `../templates/${template}`),
+          process.cwd() + `/${project}`,
+          { overwrite: true, dot: true },
+          (err) => err && console.error('Copy failed: ' + err)
         )
-        console.log('')
-        console.log(colors.magenta('cd ' + answers.project))
-        console.log(colors.magenta('npm install'))
-        console.log(colors.magenta('npm start'))
-      }
-
-      template.generate(
-        path.resolve(__dirname, `../src/templates/${answers.framework}`),
-        answers.project,
-        message
-      )
-    })
-    .catch((error) => {
-      console.log('')
-      console.log(
-        colors.red('Something went wrong when creating your project :(')
-      )
-      console.error(error)
-    })
-})
+        console.log(colors.green('terminado con exito'))
+      })
+      .catch((err) => console.error(err))
+  })
 
 // Active all commands (This is required)
-command.activate()
+program.parse(process.argv)
