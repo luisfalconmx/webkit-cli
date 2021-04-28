@@ -42,21 +42,25 @@ program
 
         const tasks = new Listr([
           {
-            title: 'Copy files',
+            title: 'Create directory',
             task: () => {
               if (!fs.existsSync(destPath)) {
                 fs.mkdirSync(destPath, { recursive: true })
               } else {
                 throw new Error('Directory already exists')
               }
-
+            }
+          },
+          {
+            title: 'Copy files',
+            task: () => {
               // Copy all files
-              copy(`${srcPath}/*`, destPath, (err) => {
+              copy(`${srcPath}/**/*`, destPath, (err) => {
                 if (err) throw new Error(err)
               })
 
-              // Copy dot files
-              copy(`${srcPath}/.*`, destPath, (err) => {
+              // Copy all dot files
+              copy(`${srcPath}/**/.*`, destPath, (err) => {
                 if (err) throw new Error(err)
               })
             }
@@ -95,7 +99,10 @@ program
             console.error(err)
           })
       })
-      .catch((err) => console.error(colors.red(err)))
+      .catch((err) => {
+        console.error(colors.red('Error creating project'))
+        console.error(colors.red(err))
+      })
   })
 
 // Active all commands (This is required)
