@@ -1,11 +1,13 @@
 #!/usr/bin/env node
-// const path = require('path')
+const path = require('path')
 const { version } = require('../package.json')
 const { program } = require('commander')
 const inquirer = require('inquirer')
 const colors = require('colors/safe')
 const Listr = require('listr')
-const execa = require('execa')
+// const execa = require('execa')
+const fs = require('fs')
+const copy = require('copy')
 
 // Set the cli version
 program.version(version)
@@ -35,11 +37,28 @@ program
         }
       ])
       .then(({ project, template, branch }) => {
+        const srcPath = path.resolve(__dirname, `../templates/${template}`)
+        const destPath = process.cwd() + `/${project}`
+
         const tasks = new Listr([
           {
-            title: 'Create directory',
+            title: 'Copy Files',
             task: () => {
-              execa('ls')
+              if (!fs.existsSync(destPath)) {
+                fs.mkdirSync(destPath, { recursive: true })
+              } else {
+                throw new Error('Directory already exists')
+              }
+
+              // Copy all files
+              copy(`${srcPath}/*`, destPath, (err) => {
+                if (err) throw new Error(err)
+              })
+
+              // Copy dot files
+              copy(`${srcPath}/.*`, destPath, (err) => {
+                if (err) throw new Error(err)
+              })
             }
           }
         ])
