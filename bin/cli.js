@@ -64,6 +64,13 @@ program
           {
             title: 'Install package dependencies',
             task: () => execa('npm', ['install'], { cwd: project })
+          },
+          {
+            title: 'Initializing repository',
+            task: () =>
+              execa('git', ['init', `--initial-branch=${branch}`], {
+                cwd: project
+              })
           }
         ])
 
