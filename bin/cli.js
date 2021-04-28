@@ -81,7 +81,15 @@ program
         tasks
           .run()
           .then(() => {
-            console.log(colors.green('The project was built successfully'))
+            console.log()
+            console.log(
+              colors.green('🎉 ', 'The project was built successfully')
+            )
+            console.log()
+            console.log('Now run the following commands:')
+            console.log(colors.cyan(`cd ${project}`))
+            console.log(colors.cyan('npm start'))
+            console.log()
           })
           .catch((err) => {
             console.error(err)
