@@ -25,9 +25,9 @@
   "dependencies": {
     "colors": "^1.4.0",
     "commander": "^7.1.0",
-    "fs-extra": "^9.1.0",
+    "execa": "^0.6.0",
     "inquirer": "^8.0.0",
-    "recursive-copy": "^2.0.11"
+    "listr": "^0.14.3"
   },
   "devDependencies": {
     "eslint": "^7.24.0",

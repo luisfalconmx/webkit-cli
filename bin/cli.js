@@ -1,10 +1,11 @@
 #!/usr/bin/env node
-const path = require('path')
+// const path = require('path')
 const { version } = require('../package.json')
 const { program } = require('commander')
 const inquirer = require('inquirer')
 const colors = require('colors/safe')
-const copy = require('recursive-copy')
+const Listr = require('listr')
+const execa = require('execa')
 
 // Set the cli version
 program.version(version)
@@ -25,18 +26,29 @@ program
           type: 'list',
           message: 'Select the template you will use',
           choices: ['react-tailwindcss', 'react-bootstrap']
+        },
+        {
+          name: 'branch',
+          type: 'list',
+          message: 'Select the template you will use',
+          choices: ['main', 'master']
         }
       ])
-      .then(async ({ project, template }) => {
-        await copy(
-          path.resolve(__dirname, `../templates/${template}`),
-          process.cwd() + `/${project}`,
-          { overwrite: true, dot: true },
-          (err) => err && console.error('Copy failed: ' + err)
-        )
-        console.log(colors.green('terminado con exito'))
+      .then(({ project, template, branch }) => {
+        const tasks = new Listr([
+          {
+            title: 'Create directory',
+            task: () => {
+              execa('ls')
+            }
+          }
+        ])
+
+        tasks.run().catch((err) => {
+          console.error(err)
+        })
       })
-      .catch((err) => console.error(err))
+      .catch((err) => console.error(colors.red(err)))
   })
 
 // Active all commands (This is required)
