@@ -32,7 +32,7 @@ program
         {
           name: 'branch',
           type: 'list',
-          message: 'Default branch name for repository',
+          message: 'Default branch for repository',
           choices: ['main', 'master']
         }
       ])
@@ -71,12 +71,21 @@ program
               execa('git', ['init', `--initial-branch=${branch}`], {
                 cwd: project
               })
+          },
+          {
+            title: 'Setting up code validators',
+            task: () => execa('npx', ['mrm', 'lint-staged'], { cwd: project })
           }
         ])
 
-        tasks.run().catch((err) => {
-          console.error(err)
-        })
+        tasks
+          .run()
+          .then(() => {
+            console.log(colors.green('The project was built successfully'))
+          })
+          .catch((err) => {
+            console.error(err)
+          })
       })
       .catch((err) => console.error(colors.red(err)))
   })
