@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 const path = require('path')
+const fs = require('fs')
 const { version } = require('../package.json')
 const { program } = require('commander')
 const inquirer = require('inquirer')
 const colors = require('colors/safe')
 const Listr = require('listr')
-// const execa = require('execa')
-const fs = require('fs')
+const execa = require('execa')
 const copy = require('copy')
 
 // Set the cli version
@@ -32,7 +32,7 @@ program
         {
           name: 'branch',
           type: 'list',
-          message: 'Select the template you will use',
+          message: 'Default branch name for repository',
           choices: ['main', 'master']
         }
       ])
@@ -42,7 +42,7 @@ program
 
         const tasks = new Listr([
           {
-            title: 'Copy Files',
+            title: 'Copy files',
             task: () => {
               if (!fs.existsSync(destPath)) {
                 fs.mkdirSync(destPath, { recursive: true })
@@ -60,6 +60,10 @@ program
                 if (err) throw new Error(err)
               })
             }
+          },
+          {
+            title: 'Install package dependencies',
+            task: () => execa('npm', ['install'], { cwd: project })
           }
         ])
 
