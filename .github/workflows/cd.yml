@@ -12,14 +12,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set enviroment variables
-        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-
-      - name: Change npm package version
-        uses: reedyuk/npm-version@1.1.1
-        with:
-          version: ${{ env.RELEASE_VERSION }}
-
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
