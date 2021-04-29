@@ -1,9 +1,9 @@
 ---
 name: Feature request
 about: Suggest an idea for this project
-title: ""
-labels: "feat"
-assignees: "luisfalconmx"
+title: ''
+labels: 'feat'
+assignees: 'luisfalconmx'
 ---
 
 **Describe the feature**

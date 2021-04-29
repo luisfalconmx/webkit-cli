@@ -1,0 +1,60 @@
+{
+  "name": "react-tailwindcss",
+  "version": "1.0.0",
+  "description": "React and Tailwindcss template",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "NODE_ENV=development webpack serve --mode development",
+    "build": "NODE_ENV=production webpack --mode production"
+  },
+  "keywords": [
+    "react",
+    "tailwindcss",
+    "postcss",
+    "webpack",
+    "babel",
+    "eslint",
+    "prettier"
+  ],
+  "author": "luisfalconmx",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.13.16",
+    "@babel/plugin-transform-runtime": "^7.13.15",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-react": "^7.13.13",
+    "autoprefixer": "^10.2.5",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "css-loader": "^5.2.4",
+    "cssnano": "^5.0.1",
+    "dotenv": "^8.2.0",
+    "dotenv-webpack": "^7.0.2",
+    "eslint": "^7.24.0",
+    "eslint-config-prettier": "^8.2.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-react": "^7.23.2",
+    "html-loader": "^2.1.2",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.5.0",
+    "postcss": "^8.2.12",
+    "postcss-loader": "^5.2.0",
+    "prettier": "^2.2.1",
+    "style-loader": "^2.0.0",
+    "tailwindcss": "^2.1.2",
+    "terser-webpack-plugin": "^5.1.1",
+    "webpack": "^5.35.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpackbar": "^5.0.0-3"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}

@@ -5,29 +5,50 @@ on:
     types: [published]
 
 jobs:
-  publish:
-    runs-on: ubuntu-20.04
+  publish-to-npm:
+    name: Publish to NPM Registry
+    runs-on: ubuntu-latest
     steps:
-      - name: Set env
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set enviroment variables
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
 
-      - name: Checkout repository
-        uses: actions/checkout@v1
+      - name: Change npm package version
+        uses: reedyuk/npm-version@1.1.1
+        with:
+          version: ${{ env.RELEASE_VERSION }}
 
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: 14.15.4
+          node-version: 14.16.1
 
-      - run: npm install
+      - name: NPM Install
+        run: npm install
 
-      - name: Publish to NPM Registry
+      - name: Publish to registry
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish to Github Package Registry
-        uses: JS-DevTools/npm-publish@v1
+  publish-to-github-packages:
+    name: Publish to Github Packages
+    needs: publish-to-npm
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
         with:
-          token: ${{ secrets.REPOSITORY_TOKEN }}
-          registry: https://npm.pkg.github.com/
+          node-version: 14.16.1
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@componetizer'
+      - run: npm install
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

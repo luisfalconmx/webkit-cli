@@ -1,58 +1,120 @@
 #!/usr/bin/env node
-const path = require("path");
-const package = require("../package.json");
-const prompt = require("../src/utils/prompt.js");
-const command = require("../src/utils/command.js");
-const template = require("../src/utils/template.js");
-const colors = require("colors/safe");
+const path = require('path')
+const fs = require('fs')
+const { version } = require('../package.json')
+const { program } = require('commander')
+const inquirer = require('inquirer')
+const colors = require('colors/safe')
+const Listr = require('listr')
+const execa = require('execa')
+const copy = require('copy')
 
 // Set the cli version
-command.version(package.version);
+program.version(version)
 
-command.create("new", "create a new project", () => {
-  const questions = prompt.setQuestions([
-    {
-      name: "project",
-      message: "What is the name of your project?",
-      default: "my-project",
-    },
-    {
-      name: "framework",
-      type: "list",
-      message: "What css framework will you use?",
-      choices: ["tailwindcss"],
-    },
-  ]);
+// Common Validations for questions
+const notEmptyField = async (input) => {
+  if (input === '') {
+    return 'This field is required'
+  }
+  return true
+}
 
-  prompt
-    .getAnswers(questions)
-    .then((answers) => {
-      const message = () => {
-        console.log("");
-        console.log(colors.green("Your project was created successfully!"));
-        console.log(
-          "Now run the following commands to finish the installation:"
-        );
-        console.log("");
-        console.log(colors.magenta("cd " + answers.project));
-        console.log(colors.magenta("npm install"));
-        console.log(colors.magenta("npm start"));
-      };
+// Commands
+program
+  .command('new')
+  .description('create a new project')
+  .action(() => {
+    inquirer
+      .prompt([
+        {
+          name: 'project',
+          type: 'input',
+          message: 'What is the name of your project?',
+          default: 'my-project',
+          validate: notEmptyField
+        },
+        {
+          name: 'template',
+          type: 'list',
+          message: 'Select the template you will use',
+          choices: ['react-tailwindcss']
+        },
+        {
+          name: 'branch',
+          type: 'list',
+          message: 'Default branch for repository',
+          choices: ['main', 'master', 'stable']
+        }
+      ])
+      .then(({ project, template, branch }) => {
+        const srcPath = path.resolve(__dirname, `../templates/${template}`)
+        const destPath = process.cwd() + `/${project}`
 
-      template.generate(
-        path.resolve(__dirname, `../src/templates/${answers.framework}`),
-        answers.project,
-        message
-      );
-    })
-    .catch((error) => {
-      console.log("");
-      console.log(
-        colors.red("Something went wrong when creating your project :(")
-      );
-      console.error(error);
-    });
-});
+        const tasks = new Listr([
+          {
+            title: 'Create directory',
+            task: () => {
+              if (!fs.existsSync(destPath)) {
+                fs.mkdirSync(destPath, { recursive: true })
+              } else {
+                throw new Error('Directory already exists')
+              }
+            }
+          },
+          {
+            title: 'Copy files',
+            task: () => {
+              // Copy all files
+              copy(`${srcPath}/**/*`, destPath, (err) => {
+                if (err) throw new Error(err)
+              })
+
+              // Copy all dot files
+              copy(`${srcPath}/**/.*`, destPath, (err) => {
+                if (err) throw new Error(err)
+              })
+            }
+          },
+          {
+            title: 'Install package dependencies',
+            task: () => execa('npm', ['install'], { cwd: project })
+          },
+          {
+            title: 'Initializing repository',
+            task: () =>
+              execa('git', ['init', `--initial-branch=${branch}`], {
+                cwd: project
+              })
+          },
+          {
+            title: 'Setting up code validators',
+            task: () => execa('npx', ['mrm', 'lint-staged'], { cwd: project })
+          }
+        ])
+
+        tasks
+          .run()
+          .then(() => {
+            console.log()
+            console.log(
+              colors.green('🎉 ', 'The project was built successfully')
+            )
+            console.log()
+            console.log('Now run the following commands:')
+            console.log(colors.cyan(`cd ${project}`))
+            console.log(colors.cyan('npm start'))
+            console.log()
+          })
+          .catch((err) => {
+            console.error(err)
+          })
+      })
+      .catch((err) => {
+        console.error(colors.red('Error creating project'))
+        console.error(colors.red(err))
+      })
+  })
 
 // Active all commands (This is required)
-command.activate();
+program.parse(process.argv)
