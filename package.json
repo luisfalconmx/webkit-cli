@@ -1,10 +1,9 @@
 {
-  "name": "webkit-cli",
-  "version": "1.0.1",
-  "description": "CLI tool for initialize react projects with different frameworks and web technologies",
+  "name": "componetizer-cli",
+  "version": "2.0.0",
+  "description": "CLI tool for initialize react projects with different configurations",
   "main": "bin/cli.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
   },
   "bin": {

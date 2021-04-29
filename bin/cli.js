@@ -12,6 +12,15 @@ const copy = require('copy')
 // Set the cli version
 program.version(version)
 
+// Common Validations for questions
+const notEmptyField = async (input) => {
+  if (input === '') {
+    return 'This field is required'
+  }
+  return true
+}
+
+// Commands
 program
   .command('new')
   .description('create a new project')
@@ -20,20 +29,22 @@ program
       .prompt([
         {
           name: 'project',
+          type: 'input',
           message: 'What is the name of your project?',
-          default: 'my-project'
+          default: 'my-project',
+          validate: notEmptyField
         },
         {
           name: 'template',
           type: 'list',
           message: 'Select the template you will use',
-          choices: ['react-tailwindcss', 'react-bootstrap']
+          choices: ['react-tailwindcss']
         },
         {
           name: 'branch',
           type: 'list',
           message: 'Default branch for repository',
-          choices: ['main', 'master']
+          choices: ['main', 'master', 'stable']
         }
       ])
       .then(({ project, template, branch }) => {
