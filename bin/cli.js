@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 const path = require('path')
 const fs = require('fs')
+const fse = require('fs-extra')
 const { version } = require('../package.json')
 const { program } = require('commander')
 const inquirer = require('inquirer')
 const colors = require('colors/safe')
 const Listr = require('listr')
 const execa = require('execa')
-const copy = require('copy')
 
 // Set the cli version
 program.version(version)
@@ -66,13 +66,10 @@ program
             title: 'Copy files',
             task: () => {
               // Copy all files
-              copy(`${srcPath}/**/*`, destPath, (err) => {
-                if (err) throw new Error(err)
-              })
-
-              // Copy all dot files
-              copy(`${srcPath}/**/.*`, destPath, (err) => {
-                if (err) throw new Error(err)
+              fse.copy(srcPath, destPath, (err) => {
+                if (err) {
+                  throw new Error('File copy fails', err)
+                }
               })
             }
           },
