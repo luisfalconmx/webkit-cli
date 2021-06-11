@@ -51,11 +51,10 @@ version-resolver:
 
 template: |
   ## Getting the project
-  Get package from NPM: #
-  Get package from Github Package Registry: #
-  License: https://github.com/luisfalconmx/webkit-cli/blob/main/LICENSE
-  Code of Conduct: https://github.com/luisfalconmx/webkit-cli/blob/main/CODE_OF_CONDUCT.md
+  Get package from NPM: https://www.npmjs.com/package/componetizer-cli
+  License: https://github.com/componetizer/componetizer-cli/blob/main/LICENSE
+  Code of Conduct: https://github.com/componetizer/componetizer-cli/blob/main/CODE_OF_CONDUCT.md
 
-  ## New in webkit-cli v$RESOLVED_VERSION
+  ## New in componetizer-cli v$RESOLVED_VERSION
 
   $CHANGES
