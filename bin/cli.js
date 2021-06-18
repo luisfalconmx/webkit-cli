@@ -44,10 +44,17 @@ program
           name: 'branch',
           type: 'list',
           message: 'Default branch for repository',
-          choices: ['main', 'master', 'stable']
+          choices: ['main', 'master', 'stable', 'custom']
+        },
+        {
+          name: 'branchCustom',
+          type: 'input',
+          message: 'Enter a custom name for the default repository branch',
+          validate: notEmptyField,
+          when: (answers) => answers.branch === 'custom'
         }
       ])
-      .then(({ project, template, branch }) => {
+      .then(({ project, template, branch, branchCustom }) => {
         const srcPath = path.resolve(__dirname, `../templates/${template}`)
         const destPath = process.cwd() + `/${project}`
 
@@ -79,10 +86,12 @@ program
           },
           {
             title: 'Initializing repository',
-            task: () =>
-              execa('git', ['init', `--initial-branch=${branch}`], {
+            task: () => {
+              const branchName = branch === 'custom' ? branchCustom : branch
+              return execa('git', ['init', `--initial-branch=${branchName}`], {
                 cwd: project
               })
+            }
           },
           {
             title: 'Setting up code validators',
