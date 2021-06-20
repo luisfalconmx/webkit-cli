@@ -4,3 +4,4 @@ dist/
 
 # Common files
 .env
+.eslintcache
