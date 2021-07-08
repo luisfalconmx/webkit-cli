@@ -1,36 +1,42 @@
 {
-  "name": "componetizer-cli",
-  "version": "2.2.0",
-  "description": "CLI tool for initialize react projects with different configurations",
+  "name": "webkit-cli",
+  "version": "2.2.1",
+  "description": "CLI tool for initialize projects with different configurations",
   "main": "bin/cli.js",
   "scripts": {
     "prepare": "husky install"
   },
   "bin": {
-    "componetizer": "./bin/cli.js"
+    "webkit": "./bin/cli.js"
   },
   "preferGlobal": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/componetizer/componetizer-cli.git"
+    "url": "git+https://github.com/luisfalconmx/webkit-cli.git"
   },
-  "keywords": [],
+  "keywords": [
+    "webkit",
+    "package",
+    "npm",
+    "react",
+    "webpack"
+  ],
   "author": "luisfalconmx",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/componetizer/componetizer-cli/issues"
+    "url": "https://github.com/luisfalconmx/webkit-cli/issues"
   },
-  "homepage": "https://github.com/componetizer/componetizer-cli#readme",
+  "homepage": "https://github.com/luisfalconmx/webkit-cli#readme",
   "dependencies": {
     "colors": "^1.4.0",
     "commander": "^7.2.0",
     "execa": "^0.6.3",
     "fs-extra": "^10.0.0",
-    "inquirer": "^8.1.0",
+    "inquirer": "^8.1.1",
     "listr": "^0.14.3"
   },
   "devDependencies": {
-    "eslint": "^7.28.0",
+    "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.23.4",
@@ -38,7 +44,7 @@
     "eslint-plugin-promise": "^4.3.1",
     "husky": "^6.0.0",
     "lint-staged": "^10.5.4",
-    "prettier": "^2.3.1"
+    "prettier": "^2.3.2"
   },
   "lint-staged": {
     "bin/*.js": "eslint --cache --fix"
