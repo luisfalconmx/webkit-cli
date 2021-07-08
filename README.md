@@ -1,11 +1,11 @@
 # componetizer-cli
 
-CLI tool for initialize react projects with different templates
+CLI tool for initialize projects with different templates
 
 ## Installation
 
 ```bash
-npm install componetizer-cli -g
+npm install webkit-cli -g
 ```
 
 ## Usage
@@ -13,33 +13,33 @@ npm install componetizer-cli -g
 Initialize a new project
 
 ```
-componetizer new
+webkit new
 ```
 
 Know the version
 
 ```
-componetizer --version
+webkit --version
 ```
 
 Show list of available commands
 
 ```
-componetizer help
+webkit help
 ```
 
 ## Repository
 
-https://github.com/componetizer/componetizer-cli
+https://github.com/luisfalconmx/webkit
 
 ## Contribute
 
-https://github.com/componetizer/componetizer-cli/blob/main/CONTRIBUTING.md
+https://github.com/luisfalconmx/webkit/blob/main/CONTRIBUTING.md
 
 ## Releases
 
-https://github.com/componetizer/componetizer-cli/releases
+https://github.com/luisfalconmx/webkit/releases
 
 ## License
 
-https://github.com/componetizer/componetizer-cli/blob/main/LICENSE
+https://github.com/luisfalconmx/webkit/blob/main/LICENSE
