@@ -1,10 +1,10 @@
-# componetizer-cli
+# webkit-cli v2.2.1
 
 CLI tool for initialize projects with different templates
 
 ## Installation
 
-```bash
+``` bash
 npm install webkit-cli -g
 ```
 
@@ -12,19 +12,19 @@ npm install webkit-cli -g
 
 Initialize a new project
 
-```
+``` bash
 webkit new
 ```
 
 Know the version
 
-```
+``` bash
 webkit --version
 ```
 
 Show list of available commands
 
-```
+``` bash
 webkit help
 ```
 
